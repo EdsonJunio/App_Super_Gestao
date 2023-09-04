@@ -10,8 +10,6 @@ class ContatoController extends Controller
 {
     public function contato(Request $request) {
 
-        $motivo_contatos = MotivoContato::all();
-
         return view('site.contato', ['titulo' => 'Contato (teste)', 'motivo_contatos' => $motivo_contatos]);
     }
 
