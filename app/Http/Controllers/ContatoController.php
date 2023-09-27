@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SiteContato;
 use App\MotivoContato;
-use App\Http\Middleware\LogAcessoMiddleware;
+
 class ContatoController extends Controller
 {
     public function contato(Request $request) {

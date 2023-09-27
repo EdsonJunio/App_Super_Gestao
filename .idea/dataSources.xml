@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="mariadb" uuid="5e0034a4-4f32-4b8d-9b01-7370372b6257">
+    <data-source source="LOCAL" name="mariadb" uuid="9c477032-6ce4-4864-9d31-7689b7897f98">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\LogAcesso;
-use http\Env\Response;
 
 class LogAcessoMiddleware
 {
@@ -17,12 +16,18 @@ class LogAcessoMiddleware
      */
     public function handle($request, Closure $next)
     {
-        // request - manipular
-        //return $next($request);
 
         $ip = $request->server->get('REMOTE_ADDR');
         $rota = $request->getRequestUri();
-        LogAcesso::create(['log' => "IP $ip requestou a rota $rota "]);
-       return Response('Chegamos no midleware e finalizamos no próprio middleware');
+        LogAcesso::create(['log' => "IP $ip requisitou a rota $rota"]);
+
+        // return $next($request);
+
+        $resposta = $next($request);
+
+        $resposta->setStatusCode(201, 'O status da resposta e o texto da resposta foram modificados!!!');
+
+        return $resposta;
+
     }
 }
