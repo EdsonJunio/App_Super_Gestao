@@ -21,7 +21,7 @@ class FornecedorController extends Controller
             ->paginate(3);
 
 
-        return view('app.fornecedor.listar', 
+        return view('app.fornecedor.listar',
         ['fornecedores' => $fornecedores, 'request' => $request->all()]);
     }
 
@@ -53,7 +53,7 @@ class FornecedorController extends Controller
             $fornecedor = new Fornecedor();
             $fornecedor->create($request->all());
 
-            // redirect 
+            // redirect
 
             // dados view
             $msg = 'Cadastro realizado com sucesso';
@@ -83,5 +83,13 @@ class FornecedorController extends Controller
         $fornecedor = Fornecedor::find($id);
 
         return view('app.fornecedor.adicionar', ['fornecedor' => $fornecedor, 'msg' => $msg]);
+    }
+
+    public function excluir($id)
+    {
+        //Fornecedor::find($id)->delete();
+        Fornecedor::find($id)->forceDelete();
+
+        return redirect()->route('app.fornecedor');
     }
 }
