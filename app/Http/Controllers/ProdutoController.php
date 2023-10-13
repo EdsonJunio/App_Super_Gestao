@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Produto;
-use Response;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -11,28 +10,30 @@ class ProdutoController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $produtos = Produto::paginate(10);
+
+        return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        echo 'Create';
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -42,8 +43,8 @@ class ProdutoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Produto  $produto
-     * @return Response
+     * @param  \App\Produto  $produto
+     * @return \Illuminate\Http\Response
      */
     public function show(Produto $produto)
     {
@@ -64,9 +65,9 @@ class ProdutoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request  $request
-     * @param Produto  $produto
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Produto  $produto
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Produto $produto)
     {
@@ -76,8 +77,8 @@ class ProdutoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Produto  $produto
-     * @return Response
+     * @param  \App\Produto  $produto
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Produto $produto)
     {

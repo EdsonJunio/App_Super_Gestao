@@ -201,6 +201,6 @@ button:hover {
     margin-right: 5px;
 }
 
-.pagination li {
-   list-style-type: none;
+.pagination ul {
+    list-style-type: none;
 }
