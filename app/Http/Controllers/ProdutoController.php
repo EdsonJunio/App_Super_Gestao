@@ -26,6 +26,25 @@ class ProdutoController extends Controller
 
     public function store(Request $request)
     {
+        $regras = [
+            'nome' => 'required|min:3|max:40',
+            'descricao' => 'required|min:3|max:1000',
+            'peso' => 'required|integer',
+            'unidade_id' => 'exists:unidades,id'
+        ];
+
+        $feedback = [
+            'required' => 'O campo attribute deve ser preenchido',
+            'nome.min' => 'O campo nome deve ter no minimo 3 caracteres',
+            'nome.max' => 'O campo nome deve ter no maximo 40 caracteres',
+            'descricao.min' => 'O campo descricao deve ter no minimo 3 caracteres',
+            'descricao.max' => 'O campo descricao deve ter no maximo 1000 caracteres',
+            'peso.interger' => 'O campo peso deve ser um numero inteiro',
+            'unidade_id.exists' => 'A unidade de medida informada nao existe',
+        ];
+
+        $request->validate($regras, $feedback);
+
         Produto::create($request->all());
         return redirect()->route('produto.index');
     }
