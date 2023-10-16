@@ -19,21 +19,20 @@
 
         <div class="informacao-pagina">
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
-                <form method="post" action="">
+                <form method="post" action="{{ route('produto.store') }}">
                     @csrf
                     <input type="text" name="nome" value="" placeholder="Nome" class="borda-preta">
 
-                    <input type="text" name="descricao" value="" placeholder="Descricao" class="borda-preta">
+                    <input type="text" name="descricao" value="" placeholder="Descrição" class="borda-preta">
 
-                    <input type="text" name="peso" value="" placeholder="Peso" class="borda-preta">
+                    <input type="text" name="peso" value="" placeholder="peso" class="borda-preta">
 
-                    <select name="unidade_id">
+                    <select name="unidade_id" class="borda-preta">
                         <option>-- Selecione a Unidade de Medida --</option>
 
                         @foreach ($unidades as $unidade)
                             <option value="{{ $unidade->id }}">{{ $unidade->descricao }}</option>
                         @endforeach
-
                     </select>
 
                     <button type="submit" class="borda-preta">Cadastrar</button>
