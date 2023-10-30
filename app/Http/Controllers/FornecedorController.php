@@ -14,18 +14,18 @@ class FornecedorController extends Controller
     public function listar(Request $request) {
 
         $fornecedores = Fornecedor::where('nome', 'like', '%'.$request->input('nome').'%')
-        ->where('site', 'like', '%'.$request->input('site').'%')
-        ->where('uf', 'like', '%'.$request->input('uf').'%')
-        ->where('email', 'like', '%'.$request->input('email').'%')
-        ->paginate(3);
+            ->where('site', 'like', '%'.$request->input('site').'%')
+            ->where('uf', 'like', '%'.$request->input('uf').'%')
+            ->where('email', 'like', '%'.$request->input('email').'%')
+            ->paginate(3);
 
-        return view('app.fornecedor.listar', ['fornecedores' => $fornecedores, 'request' => $request->all()]);
+        return view('app.fornecedor.listar', ['fornecedores' => $fornecedores, 'request' => $request->all() ]);
     }
 
     public function adicionar(Request $request) {
 
         $msg = '';
-
+        
         //inclusão
         if($request->input('_token') != '' && $request->input('id') == '') {
             //validacao
@@ -37,7 +37,7 @@ class FornecedorController extends Controller
             ];
 
             $feedback = [
-                'required' => 'O campo :attribute deve ser preenchida',
+                'required' => 'O campo :attribute deve ser preenchido',
                 'nome.min' => 'O campo nome deve ter no mínimo 3 caracteres',
                 'nome.max' => 'O campo nome deve ter no máximo 40 caracteres',
                 'uf.min' => 'O campo uf deve ter no mínimo 2 caracteres',
@@ -62,7 +62,7 @@ class FornecedorController extends Controller
             $update = $fornecedor->update($request->all());
 
             if($update) {
-                $msg = 'Atualização realizado com sucesso';
+                $msg = 'Atualização realizada com sucesso';
             } else {
                 $msg = 'Erro ao tentar atualizar o registro';
             }
@@ -74,7 +74,7 @@ class FornecedorController extends Controller
     }
 
     public function editar($id, $msg = '') {
-
+        
         $fornecedor = Fornecedor::find($id);
 
         return view('app.fornecedor.adicionar', ['fornecedor' => $fornecedor, 'msg' => $msg]);
