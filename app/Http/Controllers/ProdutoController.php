@@ -18,7 +18,7 @@ class ProdutoController extends Controller
     {
         $produtos = Produto::paginate(10);
 
-        foreach($produtos as $key => $produto) {
+        /*foreach($produtos as $key => $produto) {
             //print_r($produto->getAttributes());
             //echo '<br><br>';
 
@@ -27,13 +27,13 @@ class ProdutoController extends Controller
             //ProdutoDetalhe
             if(isset($produtoDetalhe)) {
                 //print_r($produtoDetalhe->getAttributes());
-                
+
                 $produtos[$key]['comprimento'] = $produtoDetalhe->comprimento;
                 $produtos[$key]['largura'] = $produtoDetalhe->largura;
                 $produtos[$key]['altura'] = $produtoDetalhe->altura;
             }
             //echo '<hr>';
-        }
+        }*/
 
         return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all() ]);
     }
@@ -75,7 +75,7 @@ class ProdutoController extends Controller
         ];
 
         $request->validate($regras, $feedback);
-        
+
         Produto::create($request->all());
         return redirect()->route('produto.index');
     }
