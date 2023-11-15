@@ -16,7 +16,7 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request): string
     {
         $produtos = Item::with(['itemDetalhe', 'fornecedor'])->paginate(10);
 
@@ -63,7 +63,7 @@ class ProdutoController extends Controller
         ];
 
         $request->validate($regras, $feedback);
-        
+
         Item::create($request->all());
         return redirect()->route('produto.index');
     }
